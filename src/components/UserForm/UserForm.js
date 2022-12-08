@@ -11,9 +11,9 @@ function UserForm() {
       <form onSubmit={addUserSubmitHandler}>
         <label for="username">Username</label>
         <input id="username" type="text" />
-        <label for="age">Age(Years)</label>
+        <label for="age">Age (Years)</label>
         <input id="age" type="number" />
-        <Button type="submit" text="Add User" />
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );
