@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserForm from './components/UserForm/UserForm';
 
 function App() {
+  const addNewUser = user => {
+    console.log(user);
+  };
   return (
     <div>
-      <UserForm />
+      <UserForm onAddNewUser={addNewUser} />
     </div>
   );
 }
