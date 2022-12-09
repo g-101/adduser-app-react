@@ -4,14 +4,14 @@ import UsersList from './components/UsersList/UsersList';
 
 function App() {
   const [users, setUsers] = useState([]);
-  const addNewUser = user => {
+
+  const addUserHandler = user => {
     setUsers(prevUsers => [user, ...prevUsers]);
-    console.log(user);
   };
-  console.log(users);
+
   return (
     <div>
-      <UserForm onAddNewUser={addNewUser} />
+      <UserForm onAddUser={addUserHandler} />
       <UsersList users={users} />
     </div>
   );
