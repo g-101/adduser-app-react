@@ -25,6 +25,7 @@ function UserForm(props) {
       name: inUsername,
       age: inAge,
     });
+    console.log('form enviado');
     setInUsername('');
     setInAge('');
   };
