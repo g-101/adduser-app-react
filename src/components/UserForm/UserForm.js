@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+
 import Button from '../UI/Button';
 import Card from '../UI/Card';
 import ErrorModal from '../UI/ErrorModal';
 import classes from './UserForm.module.css';
+import { checkInput } from '../../helpers/index';
 
 function UserForm(props) {
   const [inUsername, setInUsername] = useState('');
@@ -21,24 +23,31 @@ function UserForm(props) {
   };
   const addUserSubmitHandler = event => {
     event.preventDefault();
-    if (inUsername.trim().length === 0 || inAge.trim().length === 0) {
-      setStatusModal({
-        title: 'Dados invalidos',
-        message:
-          'Por favor insira um nome ou idade com caracteres válidos( dados em branco não é permitido)',
-      });
+    const [status, outMessage] = checkInput(inUsername, inAge);
+    console.log(status);
+    console.log(inUsername, inAge);
+    if (!status) {
+      setStatusModal(outMessage);
       return;
     }
-    if (+inAge < 1) {
-      setStatusModal({
-        title: 'Dados invalidos',
-        message: 'Por favor insira idade maior que zero',
-      });
-      return;
-    }
+    // if (inUsername.trim().length === 0 || inAge.trim().length === 0) {
+    //   setStatusModal({
+    //     title: 'Dados invalidos',
+    //     message:
+    //       'Por favor insira um nome ou idade com caracteres válidos( dados em branco não é permitido)',
+    //   });
+    //   return;
+    // }
+    // if (+inAge < 1) {
+    //   setStatusModal({
+    //     title: 'Dados invalidos',
+    //     message: 'Por favor insira idade maior que zero',
+    //   });
+    //   return;
+    // }
     props.onAddUser({
       id: uuidv4(),
-      name: inUsername,
+      username: inUsername,
       age: inAge,
     });
     console.log('form enviado');
